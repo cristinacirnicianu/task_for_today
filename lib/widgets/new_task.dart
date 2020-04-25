@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
 class NewTask extends StatelessWidget {
+  final Function addTask;
   final nameController = TextEditingController();
   final hourController = TextEditingController();
+
+  NewTask(this.addTask);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +29,7 @@ class NewTask extends StatelessWidget {
                 child: Text('Add task'),
                 textColor: Colors.blue,
                 onPressed: () {
-                  print(nameController.text);
+                  addTask(nameController.text, double.parse(hourController.text));
                 },
               )
             ],

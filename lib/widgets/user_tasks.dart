@@ -35,7 +35,7 @@ class _UserTasksState extends State<UserTasks> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        NewTask(),
+        NewTask(_addNewTask),
         TaskList(_userTasks),
       ],
     );
