@@ -10,41 +10,42 @@ class TaskList extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Container(
       height: 300,
-      child: ListView(
-          children: tasks.map((tk) {
-            return Card(
-              child: Row(
-                children: [
-                  Container(
-                    child: Text(
-                      tk.hourTask.toString() + 'h',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                          color: Colors.blue[800]
-                      ),),
-                    margin: EdgeInsets.symmetric(
-                      vertical: 10,
-                      horizontal: 15,
-                    ),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black26, width: 2),
-                    ),
-                    padding: EdgeInsets.all(10),
+      child: ListView.builder(
+        itemBuilder: (context, index) {
+          return Card(
+            child: Row(
+              children: [
+                Container(
+                  child: Text(
+                    tasks[index].hourTask.toString() + 'h',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                        color: Colors.blue[800]
+                    ),),
+                  margin: EdgeInsets.symmetric(
+                    vertical: 10,
+                    horizontal: 15,
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(tk.name, style: TextStyle(
-                          fontSize: 16, fontWeight: FontWeight.bold),),
-                      Text(DateFormat.yMMMd().format(tk.dateTime),
-                        style: TextStyle(color: Colors.grey[800]),),
-                    ],
-                  )
-                ],
-              ),
-            );
-          }).toList(),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black26, width: 2),
+                  ),
+                  padding: EdgeInsets.all(10),
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(tasks[index].name, style: TextStyle(
+                        fontSize: 16, fontWeight: FontWeight.bold),),
+                    Text(DateFormat.yMMMd().format(tasks[index].dateTime),
+                      style: TextStyle(color: Colors.grey[800]),),
+                  ],
+                )
+              ],
+            ),
+          );
+        },
+        itemCount: tasks.length,
         ),
     );
   }
