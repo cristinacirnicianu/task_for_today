@@ -29,6 +29,9 @@ class MyHomePage extends StatelessWidget {
     Task(id: 't3', name: 'meditate', hourTask: 0.15, dateTime: DateTime.now()),
   ];
 
+  final nameController = TextEditingController();
+  final hourController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,11 +56,14 @@ class MyHomePage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  TextField(decoration: InputDecoration(labelText: 'Task'),),
-                  TextField(decoration: InputDecoration(labelText: 'Hours'),),
+                  TextField(decoration: InputDecoration(labelText: 'Task'), controller: nameController,),
+                  TextField(decoration: InputDecoration(labelText: 'Hours'), controller: hourController,),
                   FlatButton(child: Text('Add task'),
                     textColor: Colors.blue,
-                    onPressed: () {},)
+                    onPressed: () {
+                    print(nameController.text);
+                    print(hourController.text);
+                    },)
                 ],
               ),
             ),),
