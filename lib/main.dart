@@ -62,7 +62,6 @@ class MyHomePage extends StatelessWidget {
                     textColor: Colors.blue,
                     onPressed: () {
                     print(nameController.text);
-                    print(hourController.text);
                     },)
                 ],
               ),
