@@ -2,21 +2,8 @@ import 'package:flutter/material.dart';
 import '../models/task_model.dart';
 import 'package:intl/intl.dart';
 
-class TaskList extends StatefulWidget {
-  @override
-  _TaskListState createState() => _TaskListState();
-}
+class TaskList extends StatelessWidget {
 
-class _TaskListState extends State<TaskList> {
-  final List<Task> _userTasks = [
-    Task(id: 't1', name: 'make yoga', hourTask: 2.5, dateTime: DateTime.now()),
-    Task(
-        id: 't2',
-        name: 'java programing',
-        hourTask: 5,
-        dateTime: DateTime.now()),
-    Task(id: 't3', name: 'meditate', hourTask: 0.15, dateTime: DateTime.now()),
-  ];
   @override
   Widget build(BuildContext context) {
     return  Column(

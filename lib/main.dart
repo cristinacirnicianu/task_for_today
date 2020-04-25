@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import './widgets/new_task.dart';
-import './widgets/task_list.dart';
+import './widgets/user_tasks.dart';
 
 void main() {
   runApp(MyApp());
@@ -39,8 +38,7 @@ class MyHomePage extends StatelessWidget {
                 elevation: 5,
               ),
             ),
-            NewTask(),
-            TaskList(),
+            UserTasks(),
           ],
         ));
   }
