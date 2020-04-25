@@ -3,11 +3,13 @@ import '../models/task_model.dart';
 import 'package:intl/intl.dart';
 
 class TaskList extends StatelessWidget {
+  final List<Task> tasks;
+  TaskList(this.tasks);
 
   @override
   Widget build(BuildContext context) {
     return  Column(
-      children: _userTasks.map((tk) {
+      children: tasks.map((tk) {
         return Card(
           child: Row(
             children: [

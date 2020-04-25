@@ -24,7 +24,7 @@ class _UserTasksState extends State<UserTasks> {
     return Column(
       children: [
         NewTask(),
-        TaskList(),
+        TaskList(_userTasks),
       ],
     );
   }
