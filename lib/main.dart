@@ -26,8 +26,7 @@ class MyHomePage extends StatelessWidget {
         appBar: AppBar(
           title: Text('Task for today'),
         ),
-        body: SingleChildScrollView(
-          child: Column(
+        body: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
@@ -42,6 +41,6 @@ class MyHomePage extends StatelessWidget {
               UserTasks(),
             ],
           ),
-        ));
+        );
   }
 }
