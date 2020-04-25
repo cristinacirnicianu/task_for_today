@@ -10,8 +10,7 @@ class TaskList extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Container(
       height: 300,
-      child: SingleChildScrollView(
-        child: Column(
+      child: ListView(
           children: tasks.map((tk) {
             return Card(
               child: Row(
@@ -47,7 +46,6 @@ class TaskList extends StatelessWidget {
             );
           }).toList(),
         ),
-      ),
     );
   }
 }
