@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:taskfortoday/widgets/task_list.dart';
-import 'models/task_model.dart';
-import 'package:intl/intl.dart';
+import './widgets/new_task.dart';
+import './widgets/task_list.dart';
 
 void main() {
   runApp(MyApp());
@@ -20,8 +19,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-  final nameController = TextEditingController();
-  final hourController = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -41,32 +39,7 @@ class MyHomePage extends StatelessWidget {
                 elevation: 5,
               ),
             ),
-            Card(
-              elevation: 5,
-              child: Container(
-                padding: EdgeInsets.all(10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    TextField(
-                      decoration: InputDecoration(labelText: 'Task'),
-                      controller: nameController,
-                    ),
-                    TextField(
-                      decoration: InputDecoration(labelText: 'Hours'),
-                      controller: hourController,
-                    ),
-                    FlatButton(
-                      child: Text('Add task'),
-                      textColor: Colors.blue,
-                      onPressed: () {
-                        print(nameController.text);
-                      },
-                    )
-                  ],
-                ),
-              ),
-            ),
+            NewTask(),
             TaskList(),
           ],
         ));
