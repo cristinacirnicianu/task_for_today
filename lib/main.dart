@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import './task_model.dart';
+import 'models/task_model.dart';
 import 'package:intl/intl.dart';
 
 void main() {
