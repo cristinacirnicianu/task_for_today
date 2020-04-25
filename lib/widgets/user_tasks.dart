@@ -19,6 +19,18 @@ class _UserTasksState extends State<UserTasks> {
     Task(id: 't3', name: 'meditate', hourTask: 0.15, dateTime: DateTime.now()),
   ];
 
+  void _addNewTask(String tkName, double tkHours) {
+    final newTk = Task(
+      name: tkName,
+      hourTask: tkHours,
+      dateTime: DateTime.now(),
+      id: DateTime.now().toString(),
+    );
+    setState(() {
+      _userTasks.add(newTk);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
