@@ -17,7 +17,7 @@ class TaskList extends StatelessWidget {
               children: [
                 Container(
                   child: Text(
-                    tasks[index].hourTask.toString() + 'h',
+                    tasks[index].hourTask.toStringAsFixed(2) + 'h',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
