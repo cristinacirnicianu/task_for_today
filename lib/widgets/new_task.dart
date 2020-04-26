@@ -24,6 +24,7 @@ class NewTask extends StatelessWidget {
               TextField(
                 decoration: InputDecoration(labelText: 'Hours'),
                 controller: hourController,
+                keyboardType: TextInputType.number,
               ),
               FlatButton(
                 child: Text('Add task'),
