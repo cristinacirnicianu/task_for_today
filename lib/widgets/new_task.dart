@@ -6,6 +6,9 @@ class NewTask extends StatelessWidget {
   final hourController = TextEditingController();
 
   NewTask(this.addTask);
+  void submitData() {
+    addTask(nameController.text, double.parse(hourController.text));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,18 +23,18 @@ class NewTask extends StatelessWidget {
               TextField(
                 decoration: InputDecoration(labelText: 'Task'),
                 controller: nameController,
+                onSubmitted:(_) => submitData,
               ),
               TextField(
                 decoration: InputDecoration(labelText: 'Hours'),
                 controller: hourController,
                 keyboardType: TextInputType.number,
+                onSubmitted:(_) => submitData,
               ),
               FlatButton(
                 child: Text('Add task'),
                 textColor: Colors.blue,
-                onPressed: () {
-                  addTask(nameController.text, double.parse(hourController.text));
-                },
+                onPressed: submitData,
               )
             ],
           ),
