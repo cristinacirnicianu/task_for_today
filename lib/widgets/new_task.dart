@@ -13,15 +13,15 @@ class _NewTaskState extends State<NewTask> {
   final nameController = TextEditingController();
   final hourController = TextEditingController();
 
-
-
   void submitData() {
     final enteredName = nameController.text;
     final enteredHour = double.parse(hourController.text);
     if (enteredName.isEmpty || enteredHour <= 0) {
       return;
     }
-   widget.addTask(enteredName, enteredHour);
+   widget.addTask(
+       enteredName,
+       enteredHour);
     Navigator.of(context).pop();
   }
 

@@ -28,7 +28,7 @@ class TaskList extends StatelessWidget {
                     horizontal: 15,
                   ),
                   decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black26, width: 2),
+                    border: Border.all(color: Theme.of(context).primaryColor, width: 2),
                   ),
                   padding: EdgeInsets.all(10),
                 ),
@@ -38,7 +38,7 @@ class TaskList extends StatelessWidget {
                     Text(tasks[index].name, style: TextStyle(
                         fontSize: 16, fontWeight: FontWeight.bold),),
                     Text(DateFormat.yMMMd().format(tasks[index].dateTime),
-                      style: TextStyle(color: Colors.grey[800]),),
+                      style: TextStyle(color: Theme.of(context).primaryColor),),
                   ],
                 )
               ],
