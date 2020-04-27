@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
 
-class NewTask extends StatelessWidget {
+class NewTask extends StatefulWidget {
+
   final Function addTask;
+  NewTask(this.addTask);
+  @override
+  _NewTaskState createState() => _NewTaskState();
+}
+
+class _NewTaskState extends State<NewTask> {
+
   final nameController = TextEditingController();
   final hourController = TextEditingController();
 
-  NewTask(this.addTask);
+
 
   void submitData() {
     final enteredName = nameController.text;
@@ -13,7 +21,8 @@ class NewTask extends StatelessWidget {
     if (enteredName.isEmpty || enteredHour <= 0) {
       return;
     }
-    addTask(enteredName, enteredHour);
+   widget.addTask(enteredName, enteredHour);
+    Navigator.of(context).pop();
   }
 
   @override
