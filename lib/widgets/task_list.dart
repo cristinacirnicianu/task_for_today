@@ -13,6 +13,9 @@ class TaskList extends StatelessWidget {
       child: tasks.isEmpty ? Column(
         children: [
           Text('No tasks added yet!', style: Theme.of(context).textTheme.headline6,),
+          SizedBox(
+            height: 30,
+          ),
           Container(
             height: 200,
               child: Image.asset('assets/images/waiting.png', fit: BoxFit.cover,)),
