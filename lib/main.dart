@@ -52,6 +52,11 @@ class _MyHomePageState extends State<MyHomePage> {
 //        dateTime: DateTime.now()),
 //    Task(id: 't3', name: 'Meditate', hourTask: 0.15, dateTime: DateTime.now()),
   ];
+  List<Task> get _recentTasks  {
+    return _userTasks.where((tk) {
+      return tk.dateTime.isAfter(DateTime.now().subtract(Duration(days: 7)));
+    }).toList();
+}
 
   void _addNewTask(String tkName, double tkHours) {
     final newTk = Task(
@@ -94,7 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-           Chart(),
+           Chart(_recentTasks),
             TaskList(_userTasks),
           ],
         ),
