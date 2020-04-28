@@ -43,13 +43,13 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Task> _userTasks = [
-    Task(id: 't1', name: 'Make yoga', hourTask: 2.5, dateTime: DateTime.now()),
-    Task(
-        id: 't2',
-        name: 'Java programing',
-        hourTask: 5,
-        dateTime: DateTime.now()),
-    Task(id: 't3', name: 'Meditate', hourTask: 0.15, dateTime: DateTime.now()),
+//    Task(id: 't1', name: 'Make yoga', hourTask: 2.5, dateTime: DateTime.now()),
+//    Task(
+//        id: 't2',
+//        name: 'Java programing',
+//        hourTask: 5,
+//        dateTime: DateTime.now()),
+//    Task(id: 't3', name: 'Meditate', hourTask: 0.15, dateTime: DateTime.now()),
   ];
 
   void _addNewTask(String tkName, double tkHours) {

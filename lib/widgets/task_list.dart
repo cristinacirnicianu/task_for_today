@@ -10,7 +10,14 @@ class TaskList extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Container(
       height: 300,
-      child: ListView.builder(
+      child: tasks.isEmpty ? Column(
+        children: [
+          Text('No tasks added yet!', style: Theme.of(context).textTheme.headline6,),
+          Container(
+            height: 200,
+              child: Image.asset('assets/images/waiting.png', fit: BoxFit.cover,)),
+        ],
+      ) : ListView.builder(
         itemBuilder: (context, index) {
           return Card(
             child: Row(
