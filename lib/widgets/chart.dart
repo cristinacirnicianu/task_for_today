@@ -48,7 +48,7 @@ class Chart extends StatelessWidget {
           return ChartBar(
               dt['day'],
               dt['hour'],
-              (dt['hour'] as double)/totalSpending);
+              totalSpending == 0.0 ? 0.0 :(dt['hour'] as double)/totalSpending);
         }).toList(),
       ),
     );
