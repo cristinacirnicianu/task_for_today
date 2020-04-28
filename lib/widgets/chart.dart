@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import './chart_bar.dart';
 import '../models/task_model.dart';
@@ -43,13 +44,20 @@ class Chart extends StatelessWidget {
     return Card(
       elevation: 6,
       margin: EdgeInsets.all(20),
-      child: Row(
-        children: groupTaskValues.map((dt) {
-          return ChartBar(
-              dt['day'],
-              dt['hour'],
-              totalSpending == 0.0 ? 0.0 :(dt['hour'] as double)/totalSpending);
-        }).toList(),
+      child: Padding(
+        padding: EdgeInsets.all(3),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: groupTaskValues.map((dt) {
+            return Flexible(
+              fit: FlexFit.tight,
+              child: ChartBar(
+                  dt['day'],
+                  dt['hour'],
+                  totalSpending == 0.0 ? 0.0 :(dt['hour'] as double)/totalSpending),
+            );
+          }).toList(),
+        ),
       ),
     );
   }
