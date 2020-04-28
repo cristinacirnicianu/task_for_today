@@ -13,11 +13,24 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.red,
-        accentColor: Colors.amber,
-      ),
       title: 'My daily tasks',
+      theme: ThemeData(
+        primarySwatch: Colors.green,
+        accentColor: Colors.amber,
+        fontFamily: 'Quicksand',
+        textTheme: ThemeData.light().textTheme.copyWith(
+          headline6: TextStyle(
+            fontFamily: 'Quicksand',
+            fontWeight: FontWeight.bold,
+            fontSize: 18
+          )
+        ),
+        appBarTheme: AppBarTheme(textTheme: ThemeData.light().textTheme.copyWith(
+            headline6: TextStyle(
+                fontFamily: 'OpenSans',
+                fontSize: 20,
+            fontWeight: FontWeight.bold)))
+      ),
       home: MyHomePage(),
     );
   }
@@ -30,13 +43,13 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Task> _userTasks = [
-    Task(id: 't1', name: 'make yoga', hourTask: 2.5, dateTime: DateTime.now()),
+    Task(id: 't1', name: 'Make yoga', hourTask: 2.5, dateTime: DateTime.now()),
     Task(
         id: 't2',
-        name: 'java programing',
+        name: 'Java programing',
         hourTask: 5,
         dateTime: DateTime.now()),
-    Task(id: 't3', name: 'meditate', hourTask: 0.15, dateTime: DateTime.now()),
+    Task(id: 't3', name: 'Meditate', hourTask: 0.15, dateTime: DateTime.now()),
   ];
 
   void _addNewTask(String tkName, double tkHours) {

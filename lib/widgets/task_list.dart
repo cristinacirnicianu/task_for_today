@@ -21,7 +21,7 @@ class TaskList extends StatelessWidget {
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
-                        color: Colors.blue[800]
+                        color: Theme.of(context).primaryColor,
                     ),),
                   margin: EdgeInsets.symmetric(
                     vertical: 10,
@@ -35,8 +35,8 @@ class TaskList extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(tasks[index].name, style: TextStyle(
-                        fontSize: 16, fontWeight: FontWeight.bold),),
+                    Text(tasks[index].name,
+                      style: Theme.of(context).textTheme.headline6),
                     Text(DateFormat.yMMMd().format(tasks[index].dateTime),
                       style: TextStyle(color: Theme.of(context).primaryColor),),
                   ],
