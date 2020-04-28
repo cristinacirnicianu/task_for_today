@@ -23,7 +23,7 @@ class Chart extends StatelessWidget {
       print(DateFormat.E().format(weekDay));
       print(totalSum);
 
-      return {'day': DateFormat.E().format(weekDay), 'hour': totalSum};
+      return {'day': DateFormat.E().format(weekDay).substring(0, 1), 'hour': totalSum};
     });
   }
 
@@ -34,7 +34,9 @@ class Chart extends StatelessWidget {
       elevation: 6,
       margin: EdgeInsets.all(20),
       child: Row(
-        children: [],
+        children: groupTaskValues.map((dt) {
+          return Text('${dt['day']}: ${dt['hour']}');
+        }).toList(),
       ),
     );
   }
