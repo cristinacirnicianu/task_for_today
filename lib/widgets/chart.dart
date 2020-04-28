@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './chart_bar.dart';
 import '../models/task_model.dart';
 import 'package:intl/intl.dart';
 
@@ -23,7 +24,16 @@ class Chart extends StatelessWidget {
       print(DateFormat.E().format(weekDay));
       print(totalSum);
 
-      return {'day': DateFormat.E().format(weekDay).substring(0, 1), 'hour': totalSum};
+      return {
+        'day': DateFormat.E().format(weekDay).substring(0, 1),
+        'hour': totalSum
+      };
+    });
+  }
+
+  double get totalSpending {
+    return groupTaskValues.fold(0.0, (sum, item) {
+      return sum +item['hour'];
     });
   }
 
@@ -35,7 +45,10 @@ class Chart extends StatelessWidget {
       margin: EdgeInsets.all(20),
       child: Row(
         children: groupTaskValues.map((dt) {
-          return Text('${dt['day']}: ${dt['hour']}');
+          return ChartBar(
+              dt['day'],
+              dt['hour'],
+              (dt['hour'] as double)/totalSpending);
         }).toList(),
       ),
     );
