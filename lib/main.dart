@@ -60,11 +60,11 @@ class _MyHomePageState extends State<MyHomePage> {
     }).toList();
 }
 
-  void _addNewTask(String tkName, double tkHours) {
+  void _addNewTask(String tkName, double tkHours, DateTime chosenDate) {
     final newTk = Task(
       name: tkName,
       hourTask: tkHours,
-      dateTime: DateTime.now(),
+      dateTime: chosenDate,
       id: DateTime.now().toString(),
     );
     setState(() {

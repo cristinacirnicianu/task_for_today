@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class NewTask extends StatefulWidget {
 
@@ -10,18 +11,25 @@ class NewTask extends StatefulWidget {
 
 class _NewTaskState extends State<NewTask> {
 
-  final nameController = TextEditingController();
-  final hourController = TextEditingController();
+  final _nameController = TextEditingController();
+  final _hourController = TextEditingController();
+  DateTime _selectedDate;
 
   void _submitData() {
-    final enteredName = nameController.text;
-    final enteredHour = double.parse(hourController.text);
-    if (enteredName.isEmpty || enteredHour <= 0) {
+    if(_hourController.text.isEmpty){
+      return;
+    }
+    final enteredName = _nameController.text;
+    final enteredHour = double.parse(_hourController.text);
+    if (enteredName.isEmpty || enteredHour <= 0 || _selectedDate==null) {
       return;
     }
    widget.addTask(
        enteredName,
-       enteredHour);
+       enteredHour,
+       _selectedDate,
+   );
+
     Navigator.of(context).pop();
   }
 
@@ -30,7 +38,15 @@ class _NewTaskState extends State<NewTask> {
         context: context,
         initialDate: DateTime.now(),
         firstDate: DateTime(2020),
-        lastDate: DateTime.now());
+        lastDate: DateTime.now()).then((pickedDate) {
+          if(pickedDate==null) {
+            return;
+          }
+          setState(() {
+            _selectedDate = pickedDate;
+          });
+
+    });
   }
 
   @override
@@ -45,12 +61,12 @@ class _NewTaskState extends State<NewTask> {
             children: [
               TextField(
                 decoration: InputDecoration(labelText: 'Task'),
-                controller: nameController,
+                controller: _nameController,
                 onSubmitted: (_) => _submitData(),
               ),
               TextField(
                 decoration: InputDecoration(labelText: 'Hours'),
-                controller: hourController,
+                controller: _hourController,
                 keyboardType: TextInputType.number,
                 onSubmitted: (_) => _submitData(),
               ),
@@ -58,7 +74,8 @@ class _NewTaskState extends State<NewTask> {
                 height: 70,
                 child: Row(
                   children: [
-                    Text('NO DATE CHOSEN'),
+                    Expanded(
+                        child: Text(_selectedDate==null ? 'NO DATE CHOSEN' : 'Picked date: ${ DateFormat.yMd().format(_selectedDate)}')),
                     FlatButton(child: Text('Choose date', style: TextStyle(
                         fontWeight: FontWeight.bold,
                     ),),
