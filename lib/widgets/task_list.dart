@@ -50,6 +50,10 @@ class TaskList extends StatelessWidget {
                         style: Theme.of(context).textTheme.headline6),
                     subtitle: Text(DateFormat.yMMMd().format(tasks[index].dateTime),
                       style:TextStyle(color:Theme.of(context).primaryColor),),
+                    trailing: IconButton(
+                      icon: Icon(Icons.delete),
+                      color: Theme.of(context).errorColor,
+                    onPressed: () {},),
                   ),
                 );
               },
