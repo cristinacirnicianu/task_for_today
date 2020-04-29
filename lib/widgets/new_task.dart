@@ -46,11 +46,25 @@ class _NewTaskState extends State<NewTask> {
                 keyboardType: TextInputType.number,
                 onSubmitted: (_) => submitData(),
               ),
-              FlatButton(
+              Container(
+                height: 70,
+                child: Row(
+                  children: [
+                    Text('NO DATE CHOSEN'),
+                    FlatButton(child: Text('Choose date', style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                    ),),
+                    onPressed: () {},
+                    textColor: Theme.of(context).primaryColor,)
+                  ],
+                ),
+              ),
+              RaisedButton(
                 child: Text('Add task'),
-                textColor: Colors.blue,
+                color: Theme.of(context).primaryColor,
+                textColor: Theme.of(context).textTheme.button.color,
                 onPressed: submitData,
-              )
+              ),
             ],
           ),
         ),
