@@ -13,7 +13,7 @@ class _NewTaskState extends State<NewTask> {
   final nameController = TextEditingController();
   final hourController = TextEditingController();
 
-  void submitData() {
+  void _submitData() {
     final enteredName = nameController.text;
     final enteredHour = double.parse(hourController.text);
     if (enteredName.isEmpty || enteredHour <= 0) {
@@ -23,6 +23,14 @@ class _NewTaskState extends State<NewTask> {
        enteredName,
        enteredHour);
     Navigator.of(context).pop();
+  }
+
+  void _presentDatePicker() {
+    showDatePicker(
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(2020),
+        lastDate: DateTime.now());
   }
 
   @override
@@ -38,13 +46,13 @@ class _NewTaskState extends State<NewTask> {
               TextField(
                 decoration: InputDecoration(labelText: 'Task'),
                 controller: nameController,
-                onSubmitted: (_) => submitData(),
+                onSubmitted: (_) => _submitData(),
               ),
               TextField(
                 decoration: InputDecoration(labelText: 'Hours'),
                 controller: hourController,
                 keyboardType: TextInputType.number,
-                onSubmitted: (_) => submitData(),
+                onSubmitted: (_) => _submitData(),
               ),
               Container(
                 height: 70,
@@ -54,7 +62,7 @@ class _NewTaskState extends State<NewTask> {
                     FlatButton(child: Text('Choose date', style: TextStyle(
                         fontWeight: FontWeight.bold,
                     ),),
-                    onPressed: () {},
+                    onPressed: _presentDatePicker,
                     textColor: Theme.of(context).primaryColor,)
                   ],
                 ),
@@ -63,7 +71,7 @@ class _NewTaskState extends State<NewTask> {
                 child: Text('Add task'),
                 color: Theme.of(context).primaryColor,
                 textColor: Theme.of(context).textTheme.button.color,
-                onPressed: submitData,
+                onPressed: _submitData,
               ),
             ],
           ),
