@@ -45,15 +45,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final List<Task> _userTasks = [
-//    Task(id: 't1', name: 'Make yoga', hourTask: 2.5, dateTime: DateTime.now()),
-//    Task(
-//        id: 't2',
-//        name: 'Java programing',
-//        hourTask: 5,
-//        dateTime: DateTime.now()),
-//    Task(id: 't3', name: 'Meditate', hourTask: 0.15, dateTime: DateTime.now()),
-  ];
+  final List<Task> _userTasks = [ ];
   List<Task> get _recentTasks  {
     return _userTasks.where((tk) {
       return tk.dateTime.isAfter(DateTime.now().subtract(Duration(days: 7)));
@@ -69,6 +61,13 @@ class _MyHomePageState extends State<MyHomePage> {
     );
     setState(() {
       _userTasks.add(newTk);
+    });
+  }
+  void _deleteTask(String id) {
+    setState(() {
+      _userTasks.removeWhere((task) {
+        return task.id == id;
+      });
     });
   }
 
@@ -102,7 +101,7 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
            Chart(_recentTasks),
-            TaskList(_userTasks),
+            TaskList(_userTasks, _deleteTask),
           ],
         ),
       ),

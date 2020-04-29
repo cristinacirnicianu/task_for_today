@@ -5,8 +5,9 @@ import 'package:intl/intl.dart';
 
 class TaskList extends StatelessWidget {
   final List<Task> tasks;
+  final Function deteteTask;
 
-  TaskList(this.tasks);
+  TaskList(this.tasks, this.deteteTask);
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +54,7 @@ class TaskList extends StatelessWidget {
                     trailing: IconButton(
                       icon: Icon(Icons.delete),
                       color: Theme.of(context).errorColor,
-                    onPressed: () {},),
+                    onPressed: ()=>deteteTask(tasks[index].id)),
                   ),
                 );
               },
