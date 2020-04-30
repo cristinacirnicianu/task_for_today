@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import './widgets/chart.dart';
 import './widgets/task_list.dart';
 import './models/task_model.dart';
@@ -43,6 +44,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Task> _userTasks = [];
+  bool _showChart = false;
 
   List<Task> get _recentTasks {
     return _userTasks.where((tk) {
@@ -101,14 +103,29 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Container(
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('Show Chart'),
+                Switch(
+                  value: _showChart,
+                  onChanged: (val) {
+                    setState(() {
+                      _showChart = val;
+                    });
+                  },
+                )
+              ],
+            ),
+            _showChart ? Container(
                 height: (MediaQuery.of(context).size.height -
-                        appBar.preferredSize.height - MediaQuery.of(context).padding.top) *
+                        appBar.preferredSize.height -
+                        MediaQuery.of(context).padding.top) *
                     0.3,
-                child: Chart(_recentTasks)),
-            Container(
+                child: Chart(_recentTasks)) :   Container(
                 height: (MediaQuery.of(context).size.height -
-                        appBar.preferredSize.height - MediaQuery.of(context).padding.top) *
+                        appBar.preferredSize.height -
+                        MediaQuery.of(context).padding.top) *
                     0.7,
                 child: TaskList(_userTasks, _deleteTask)),
           ],
