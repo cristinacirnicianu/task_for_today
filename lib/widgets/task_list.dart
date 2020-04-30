@@ -24,7 +24,7 @@ class TaskList extends StatelessWidget {
                     height: 30,
                   ),
                   Container(
-                      height: constraints.maxHeight *0.30,
+                      height: constraints.maxHeight * 0.30,
                       child: Image.asset(
                         'assets/images/waiting.png',
                         fit: BoxFit.cover,
@@ -55,10 +55,17 @@ class TaskList extends StatelessWidget {
                     DateFormat.yMMMd().format(tasks[index].dateTime),
                     style: TextStyle(color: Theme.of(context).primaryColor),
                   ),
-                  trailing: IconButton(
-                      icon: Icon(Icons.delete),
-                      color: Theme.of(context).errorColor,
-                      onPressed: () => deteteTask(tasks[index].id)),
+                  trailing: MediaQuery.of(context).size.width > 400
+                      ? FlatButton.icon(
+                          textColor: Theme.of(context).errorColor,
+                          icon: Icon(Icons.delete),
+                          label: Text('Delete'),
+                          onPressed: () => deteteTask(tasks[index].id),
+                        )
+                      : IconButton(
+                          icon: Icon(Icons.delete),
+                          color: Theme.of(context).errorColor,
+                          onPressed: () => deteteTask(tasks[index].id)),
                 ),
               );
             },
