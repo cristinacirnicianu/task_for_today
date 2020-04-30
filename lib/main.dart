@@ -89,7 +89,16 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
    final isLandscape = mediaQuery.orientation == Orientation.landscape;
-    final appBar = AppBar(
+    final PreferredSizeWidget appBar = Platform.isIOS ? CupertinoNavigationBar(
+      middle: Text('My daily tasks'),
+      trailing: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(CupertinoIcons.add),
+          GestureDetector(onTap: () => _startAddNewTask(context),)
+        ],
+      ),
+    ) : AppBar(
       title: Text('Task for today'),
       actions: [
         IconButton(
@@ -98,51 +107,54 @@ class _MyHomePageState extends State<MyHomePage> {
         )
       ],
     );
-    final tkListWidge = Container(
+     final tkListWidge = Container(
         height: (mediaQuery.size.height -
             appBar.preferredSize.height -
             mediaQuery.padding.top) *
             0.7,
         child: TaskList(_userTasks, _deleteTask));
-    return Scaffold(
-      appBar: appBar,
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-           if(isLandscape) Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('Show Chart'),
-                Switch.adaptive(
-                  activeColor: Theme.of(context).accentColor,
-                  value: _showChart,
-                  onChanged: (val) {
-                    setState(() {
-                      _showChart = val;
-                    });
-                  },
-                )
-              ],
-            ),
-            if(!isLandscape) Container(
-                height: (mediaQuery.size.height -
-                    appBar.preferredSize.height -
-                    mediaQuery.padding.top) *
-                    0.3,
-                child: Chart(_recentTasks)),
-            if(!isLandscape) tkListWidge,
 
-            if(isLandscape) _showChart ? Container(
-                height: (mediaQuery.size.height -
-                        appBar.preferredSize.height -
-                    mediaQuery.padding.top) *
-                    0.7,
-                child: Chart(_recentTasks)) :  tkListWidge ,
-          ],
-        ),
+    final pageBody = SafeArea(child: SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          if(isLandscape) Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('Show Chart', style: Theme.of(context).textTheme.bodyText1,),
+              Switch.adaptive(
+                activeColor: Theme.of(context).accentColor,
+                value: _showChart,
+                onChanged: (val) {
+                  setState(() {
+                    _showChart = val;
+                  });
+                },
+              )
+            ],
+          ),
+          if(!isLandscape) Container(
+              height: (mediaQuery.size.height -
+                  appBar.preferredSize.height -
+                  mediaQuery.padding.top) *
+                  0.3,
+              child: Chart(_recentTasks)),
+          if(!isLandscape) tkListWidge,
+
+          if(isLandscape) _showChart ? Container(
+              height: (mediaQuery.size.height -
+                  appBar.preferredSize.height -
+                  mediaQuery.padding.top) *
+                  0.7,
+              child: Chart(_recentTasks)) :  tkListWidge ,
+        ],
       ),
+    ), );
+
+    return Platform.isIOS ? CupertinoPageScaffold(child:  pageBody, navigationBar: appBar,) : Scaffold(
+      appBar: appBar,
+      body: pageBody,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Platform.isIOS ? Container() : FloatingActionButton(
         child: Icon(Icons.add),

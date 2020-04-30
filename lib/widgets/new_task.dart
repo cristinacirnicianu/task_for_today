@@ -1,3 +1,5 @@
+import 'dart:io';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -59,6 +61,7 @@ class _NewTaskState extends State<NewTask> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
+
               TextField(
                 decoration: InputDecoration(labelText: 'Task'),
                 controller: _nameController,
@@ -76,7 +79,12 @@ class _NewTaskState extends State<NewTask> {
                   children: [
                     Expanded(
                         child: Text(_selectedDate==null ? 'NO DATE CHOSEN' : 'Picked date: ${ DateFormat.yMd().format(_selectedDate)}')),
-                    FlatButton(child: Text('Choose date', style: TextStyle(
+                   Platform.isIOS ? CupertinoButton(
+                     child: Text('Choose date', style: TextStyle(
+                       fontWeight: FontWeight.bold,
+                     ),),
+                     onPressed: _presentDatePicker,
+                   ) : FlatButton(child: Text('Choose date', style: TextStyle(
                         fontWeight: FontWeight.bold,
                     ),),
                     onPressed: _presentDatePicker,
