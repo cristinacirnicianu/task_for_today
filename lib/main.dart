@@ -87,6 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+   final isLandscape = MediaQuery.of(context).orientation == Orientation.landscape;
     final appBar = AppBar(
       title: Text('Task for today'),
       actions: [
@@ -96,6 +97,12 @@ class _MyHomePageState extends State<MyHomePage> {
         )
       ],
     );
+    final tkListWidge = Container(
+        height: (MediaQuery.of(context).size.height -
+            appBar.preferredSize.height -
+            MediaQuery.of(context).padding.top) *
+            0.7,
+        child: TaskList(_userTasks, _deleteTask));
     return Scaffold(
       appBar: appBar,
       body: SingleChildScrollView(
@@ -103,7 +110,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Row(
+           if(isLandscape) Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text('Show Chart'),
@@ -117,17 +124,20 @@ class _MyHomePageState extends State<MyHomePage> {
                 )
               ],
             ),
-            _showChart ? Container(
+            if(!isLandscape) Container(
                 height: (MediaQuery.of(context).size.height -
-                        appBar.preferredSize.height -
-                        MediaQuery.of(context).padding.top) *
+                    appBar.preferredSize.height -
+                    MediaQuery.of(context).padding.top) *
                     0.3,
-                child: Chart(_recentTasks)) :   Container(
+                child: Chart(_recentTasks)),
+            if(!isLandscape) tkListWidge,
+
+            if(isLandscape) _showChart ? Container(
                 height: (MediaQuery.of(context).size.height -
                         appBar.preferredSize.height -
                         MediaQuery.of(context).padding.top) *
                     0.7,
-                child: TaskList(_userTasks, _deleteTask)),
+                child: Chart(_recentTasks)) :  tkListWidge ,
           ],
         ),
       ),
