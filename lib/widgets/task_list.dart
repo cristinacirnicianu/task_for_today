@@ -11,9 +11,7 @@ class TaskList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 450,
-      child: tasks.isEmpty
+    return  tasks.isEmpty
           ? Column(
               children: [
                 Text(
@@ -59,7 +57,6 @@ class TaskList extends StatelessWidget {
                 );
               },
               itemCount: tasks.length,
-            ),
     );
   }
 }
