@@ -20,7 +20,7 @@ class TaskList extends StatelessWidget {
                     'No tasks added yet!',
                     style: Theme.of(context).textTheme.headline6,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
                   Container(
@@ -36,13 +36,13 @@ class TaskList extends StatelessWidget {
         : ListView.builder(
             itemBuilder: (context, index) {
               return Card(
-                margin: EdgeInsets.symmetric(vertical: 8, horizontal: 5),
+                margin:const EdgeInsets.symmetric(vertical: 8, horizontal: 5),
                 elevation: 5,
                 child: ListTile(
                   leading: CircleAvatar(
                     radius: 30,
                     child: Padding(
-                      padding: const EdgeInsets.all(10.0),
+                      padding: const EdgeInsets.all(6.0),
                       child: FittedBox(
                           child: Text(
                         tasks[index].hourTask.toStringAsFixed(2) + 'h',
@@ -58,12 +58,12 @@ class TaskList extends StatelessWidget {
                   trailing: MediaQuery.of(context).size.width > 400
                       ? FlatButton.icon(
                           textColor: Theme.of(context).errorColor,
-                          icon: Icon(Icons.delete),
-                          label: Text('Delete'),
+                          icon: const Icon(Icons.delete),
+                          label: const Text('Delete'),
                           onPressed: () => deteteTask(tasks[index].id),
                         )
                       : IconButton(
-                          icon: Icon(Icons.delete),
+                          icon:const Icon(Icons.delete),
                           color: Theme.of(context).errorColor,
                           onPressed: () => deteteTask(tasks[index].id)),
                 ),

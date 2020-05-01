@@ -90,7 +90,7 @@ class _NewTaskState extends State<NewTask> {
                 ),
               ),
               RaisedButton(
-                child: Text('Add task'),
+                child:const Text('Add task'),
                 color: Theme.of(context).primaryColor,
                 textColor: Theme.of(context).textTheme.button.color,
                 onPressed: _submitData,
