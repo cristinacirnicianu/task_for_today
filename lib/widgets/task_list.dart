@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../widgets/task_items.dart';
 import '../models/task_model.dart';
-import 'package:intl/intl.dart';
+
 
 class TaskList extends StatelessWidget {
   final List<Task> tasks;
@@ -35,41 +36,11 @@ class TaskList extends StatelessWidget {
           )
         : ListView.builder(
             itemBuilder: (context, index) {
-              return Card(
-                margin:const EdgeInsets.symmetric(vertical: 8, horizontal: 5),
-                elevation: 5,
-                child: ListTile(
-                  leading: CircleAvatar(
-                    radius: 30,
-                    child: Padding(
-                      padding: const EdgeInsets.all(6.0),
-                      child: FittedBox(
-                          child: Text(
-                        tasks[index].hourTask.toStringAsFixed(2) + 'h',
-                      )),
-                    ),
-                  ),
-                  title: Text(tasks[index].name,
-                      style: Theme.of(context).textTheme.headline6),
-                  subtitle: Text(
-                    DateFormat.yMMMd().format(tasks[index].dateTime),
-                    style: TextStyle(color: Theme.of(context).primaryColor),
-                  ),
-                  trailing: MediaQuery.of(context).size.width > 400
-                      ? FlatButton.icon(
-                          textColor: Theme.of(context).errorColor,
-                          icon: const Icon(Icons.delete),
-                          label: const Text('Delete'),
-                          onPressed: () => deteteTask(tasks[index].id),
-                        )
-                      : IconButton(
-                          icon:const Icon(Icons.delete),
-                          color: Theme.of(context).errorColor,
-                          onPressed: () => deteteTask(tasks[index].id)),
-                ),
-              );
+              return TaskItems(tasks: tasks[index], deteteTask: deteteTask);
             },
             itemCount: tasks.length,
           );
   }
 }
+
+
